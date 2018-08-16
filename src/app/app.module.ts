@@ -3,11 +3,11 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
-import { UsingAContstructor } from './app.component';
+import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [
-    UsingAContstructor
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -15,6 +15,6 @@ import { UsingAContstructor } from './app.component';
     HttpModule
   ],
   providers: [],
-  bootstrap: [UsingAContstructor]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
