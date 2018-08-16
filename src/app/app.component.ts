@@ -11,5 +11,5 @@ import { Component } from '@angular/core';
 /* 여러 줄 템플릿(template) 또는 스타일시트(styles)에는 역따옴표를 사용 */
 
 export class AppComponent{
-  title = 'Chapter 4 Using External templates and styles';
+  title = 'Nested Example';
 }
