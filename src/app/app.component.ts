@@ -1,15 +1,16 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'my-app',
-  template: '<p>Hello World!</p>',
+  selector: 'app-root',
+  template: '<span>Hello my name is Brendan</span>',
   /* template: `
   <h1>Hello World!</h1>
   `, */
   styles: [`
-        p {
-          color: yellow;
-          font-size: 25px;
+        span {
+          font-weight: bold;
+          border: 1px ridge blue;
+          padding:5px;
         }
     `]
   /* styleUrls: ['./app.component.css'] */
