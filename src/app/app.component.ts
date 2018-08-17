@@ -3,44 +3,32 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
   template: `
-    Directly accessing variables in the component:<br>
-      {{speed}} {{vehicle}}<hr>
-    Adding variables in the component:<br>
-      {{speed + ' ' + vehicle}}<hr>
-    Calling functions in the component:<br>
-      {{lower(speed)}} {{upper('Jeep')}}<hr>
-
-
-    <a (click)="setValues('Fast', newVehicle)">
-      Click to change to Fast {{newVehicle}}</a><hr>
-
-    <a (click)="setValues(newSpeed, 'Rocket')">
-      Click to change to {{newSpeed}} Rocket</a><hr>
-
-    <a (click)="vehicle='Car'">
-      Click to change the vehicle to a Car</a><hr>
-
-    <a (click)="vehicle='Enhanced ' + vehicle">
-      Click to Enhance Vehicle</a><hr>
+    <h1>Expressions</h1>
+    Array:<br>
+      {{myArr.join(', ')}}<br/>
+      <hr>
+    Elements removed from array:<br>
+      {{removedArr.join(', ')}}<hr>
+    <a (click)="myArr.push(myMath.floor(myMath.random()*100+1))">
+      Click to append a value to the array
+    </a><hr>
+    <a (click)="removedArr.push(myArr.shift())">
+      Click to remove the first value from the array
+    </a><hr>
+    Size of Array:<br>
+      {{myArr.length}}<hr>
+    Max number removed from the array:<br>
+      {{myMath.max.apply(myMath, removedArr)}}<hr>
   `,
-  styles:[`
-    a{color: blue; text-decoration: underline; cursor: pointer}
-  `]
+  styles: [`
+    a {
+      color: blue;
+      cursor: pointer;
+    }
+  `],
 })
 export class AppComponent {
-  speed = 'Slow';
-  vehicle = 'Train';
-  newSpeed = 'Hypersonic';
-  newVehicle = 'Plane';
-  upper = function(str: any){
-    str = str.toUpperCase();
-    return str;
-  }
-  lower = function(str: any){
-    return str.toLowerCase();
-  }
-  setValues = function(speed: any, vehicle: any){
-    this.speed = speed;
-    this.vehicle = vehicle;
-  }
+  myMath = Math;
+  myArr: number[] = [1];
+  removedArr: number[] = [0];
 }
