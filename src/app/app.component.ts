@@ -1,34 +1,38 @@
+
 import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   template: `
-    <h1>Expressions</h1>
-    Array:<br>
-      {{myArr.join(', ')}}<br/>
-      <hr>
-    Elements removed from array:<br>
-      {{removedArr.join(', ')}}<hr>
-    <a (click)="myArr.push(myMath.floor(myMath.random()*100+1))">
-      Click to append a value to the array
-    </a><hr>
-    <a (click)="removedArr.push(myArr.shift())">
-      Click to remove the first value from the array
-    </a><hr>
-    Size of Array:<br>
-      {{myArr.length}}<hr>
-    Max number removed from the array:<br>
-      {{myMath.max.apply(myMath, removedArr)}}<hr>
-  `,
-  styles: [`
-    a {
-      color: blue;
-      cursor: pointer;
-    }
-  `],
+    Uppercase: {{"Brendan" | uppercase }}<br>
+    Lowercase: {{"HELLO WORLD" | lowercase}}<br>
+    Date: {{ today | date:'yMMMMEEEEhmsz'}}<br>
+    Date: {{today | date:'mediumDate'}}<br>
+    Date: {{today | date: 'shortTime'}}<br>
+    Number: {{3.1415927 | number:'2.1-5'}}<br>
+    Number: {{28 | number:'2.3'}}<br>
+    Currency: {{125.257 | currency:'USD':true: '1.2-2'}}<br>
+    Currency: {{2158.925 | currency}}<br>
+    Json: {{jsonObject | json}}<br>
+    PercentPipe: {{.8888 | percent: '2.2'}}<br>
+    SlicePipe: {{"hello world" | slice:0:8}}<br>
+    SlicePipe: {{days | slice:1:6}}<br>
+    legen...  {{wait | async}} {{dairy | async}}
+  `
 })
 export class AppComponent {
-  myMath = Math;
-  myArr: number[] = [1];
-  removedArr: number[] = [0];
+  today = Date.now();
+  jsonObject = [{title: "mytitle"}, {title: "Programmer"}];
+  days=['Sunday', 'Monday', 'Tuesday', 'Wednesday',
+        'Thursday', 'Friday', 'Saturday'];
+  wait = new Promise<string>((res, err) => {
+    setTimeout(function () {
+      res('wait for it...');
+    },1000);
+  });
+  dairy = new Promise<string>((res, err) => {
+    setTimeout(function() {
+      res('dairy');
+    },2000)
+  })
 }
