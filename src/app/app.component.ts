@@ -3,19 +3,44 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
   template: `
-    <h1>Expressions</h1>
-    Number:<br>
-    {{5}}<hr>
-    String:<br>
-    {{'My String'}}<hr>
-    Adding two strings together:<br> 
-    {{'String1' + ' ' + 'String2'}}<hr>
-    Adding two numbers together:<br>
-    {{5+5}}<hr>
-    Adding strings and numbers together:<br>
-    {{5 + '+' + 5 + '='}}{{5+5}}<hr>
-    Comparing two numbers with each other:<br>
-    {{5===5}}<hr>
+    Directly accessing variables in the component:<br>
+      {{speed}} {{vehicle}}<hr>
+    Adding variables in the component:<br>
+      {{speed + ' ' + vehicle}}<hr>
+    Calling functions in the component:<br>
+      {{lower(speed)}} {{upper('Jeep')}}<hr>
+
+
+    <a (click)="setValues('Fast', newVehicle)">
+      Click to change to Fast {{newVehicle}}</a><hr>
+
+    <a (click)="setValues(newSpeed, 'Rocket')">
+      Click to change to {{newSpeed}} Rocket</a><hr>
+
+    <a (click)="vehicle='Car'">
+      Click to change the vehicle to a Car</a><hr>
+
+    <a (click)="vehicle='Enhanced ' + vehicle">
+      Click to Enhance Vehicle</a><hr>
   `,
+  styles:[`
+    a{color: blue; text-decoration: underline; cursor: pointer}
+  `]
 })
-export class AppComponent {}
+export class AppComponent {
+  speed = 'Slow';
+  vehicle = 'Train';
+  newSpeed = 'Hypersonic';
+  newVehicle = 'Plane';
+  upper = function(str: any){
+    str = str.toUpperCase();
+    return str;
+  }
+  lower = function(str: any){
+    return str.toLowerCase();
+  }
+  setValues = function(speed: any, vehicle: any){
+    this.speed = speed;
+    this.vehicle = vehicle;
+  }
+}
