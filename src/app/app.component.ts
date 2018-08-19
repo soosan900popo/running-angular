@@ -3,22 +3,17 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
   template: `
-    <div [class]="myCustomClass"></div>
-    <span [class.redText]="isTrue">Hello my blue friend</span>
-  `,
-  styles: [`
-    .blueBox {
-      height: 150px;
-      width: 150px;
-      background-color: blue;
-    }
-    .redText{
-      color: red;
-      font-size: 24px;
-    }
-  `] 
+    <span [style.border]="myBorder">Hey there</span>
+    <div [style.color]="twoColors ? 'blue' : 'forestgreen'">
+      what color am I
+    </div>
+    <button (click)="changeColor()">click me</button>
+  `
 })
 export class AppComponent {
-  myCustomClass: string = 'blueBox';
-  isTrue = true;
+  twoColors: boolean = true;
+  changeColor = function () {
+    this.twoColors = !this.twoColors;
+  }
+  myBorder = "1px solid black";
 }
