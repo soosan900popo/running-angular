@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'first';
+  images: string[] = [
+    '../assets/images/jump.jpg',
+    '../assets/images/flower2.jpg',
+    '../assets/images/cliff.jpg'
+  ]
 }
