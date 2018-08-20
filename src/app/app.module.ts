@@ -3,11 +3,12 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { ChildComponent } from './child/child.component';
+import { CharacterComponent } from './characters/characters.component';
+
 @NgModule({
   declarations: [
     AppComponent,
-    ChildComponent
+    CharacterComponent
   ],
   imports: [
     BrowserModule,
