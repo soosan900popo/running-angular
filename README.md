@@ -9,6 +9,9 @@ get(): Observable<any> {
     .catch(err => Rx.Observable.of('the error was : ${err}'));
 }
 
+##모의 서버구현
+npm install angular-in-memory-web-api
+
 
 # First
 
