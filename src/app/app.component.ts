@@ -1,32 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
+// import { Observable } from 'rxjs/observable';
+// import { Subscription } from 'rxjs/Subscription';
+import { Observable } from "rxjs";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: "app-root",
+  templateUrl: "./app.component.html"
 })
-export class AppComponent {
-  character = null;
+export class AppComponent implements OnInit{
+  private name: Observable<Array<number>>;
 
-  characters = [{name: 'Frodo', weapon: 'Sting',
-                           race: 'Hobbit'},
-                {name: 'Aragorn', weapon: 'Sword',
-                             race: 'Man'},
-                {name:'Legolas', weapon: 'Bow',
-                             race: 'Elf'},
-                {name: 'Gimli', weapon: 'Axe',
-                           race: 'Dwarf'}
-  ]
-
-  selectCharacter(character){
-    this.character = character;
+  ngOnInit() {
+    this.name = new Observable(observable => {
+      observable.next("my observable");
+      observable.complete();
+    },
+    var subscribe = this.name.subscribe(
+      data=> { console.log(data) },
+      error=> { errorHandler(error) },
+      ()=> { /* final() */}
+    );
+    subscribe.unsubscribe();
   }
-  deleteChar(event){
-    var index = this.characters.indexOf(event);
-    if(index > -1) {
-      this.characters.splice(index, 1);
-    }
-    this.character = null;
-  }
-
 }
