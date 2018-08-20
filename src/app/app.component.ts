@@ -30,13 +30,35 @@ export class AppComponent implements OnInit {
       .then(users => this.users = users)
   }
 
-  selectUser(user){
+  selectUser(user) {
     this.selectedUser = user;
+  }
+
+  deleteUser(user) {
+    this.UserService
+      .deleteUser(user.id)
+      .then(() => {
+        this.getUsers();
+      });
+  }
+
+  createUser(userName, email) {
+    let user = {
+      'userName': userName.trim(),
+      'email': email.trim()
+    };
+    if (!user.userName || !user.email) {
+      return;
+    }
+    this.UserService.createUser(user)
+      .then(res => {
+        this.users.push(res);
+      })
   }
 
   updateUser(user) {
     this.selectedUser = null;
     this.UserService.updateUser(user)
-    .then(() => this.getUsers());
+      .then(() => this.getUsers());
   }
 }
