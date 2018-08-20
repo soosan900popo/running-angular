@@ -1,3 +1,15 @@
+## HTTP 요청 구성
+ - http.get('/myUrl');
+ - http({method: 'GET', url:'/myUrl'});
+
+## HTTP 응답 콜백 함수 구현
+get(): Observable<any> {
+  http.get(url)
+    .map(response => response.JSON())
+    .catch(err => Rx.Observable.of('the error was : ${err}'));
+}
+
+
 # First
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.3.

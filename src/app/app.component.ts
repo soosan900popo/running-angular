@@ -1,10 +1,27 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
+// import { Observable }        from 'rxjs/Observable';
+import { Http } from "@angular/http";
+
+// import 'rxjs/Rx'; -
+// import * as Rx from 'rxjs/Rx' +
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.css"]
 })
 export class AppComponent {
-  title = 'first';
+  users = [];
+
+  constructor(private http: Http) {
+    http
+      .get("../assets/dummyDB.json")
+      .toPromise()
+      .then(data => {
+        this.users = data.json();
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
 }
