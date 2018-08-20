@@ -18,38 +18,25 @@ export class AppComponent implements OnInit {
   users = [];
   selectedUser;
 
-  constructor(private UserService: UserService){ }
+  constructor(private UserService: UserService) { }
 
-  ngOnInit(){
+  ngOnInit() {
     this.getUsers()
   }
 
   getUsers(): void {
     this.UserService
-        .getUsers()
-        .then(users => this.users = users)
+      .getUsers()
+      .then(users => this.users = users)
   }
 
-  deleteUser(user){
-    this.UserService
-      .deleteUser(user.id)
-      .then(() => {
-        this.getUsers();
-      });
+  selectUser(user){
+    this.selectedUser = user;
   }
 
-  createUser(userName, email){
+  updateUser(user) {
     this.selectedUser = null;
-    let user = {
-      'userName': userName.trim(),
-      'email': email.trim()
-    };
-    if (!user.userName || !user.email){ 
-      return;
-    }
-    this.UserService.createUser(user)
-        .then(res => {
-          this.users.push(res);
-        })
+    this.UserService.updateUser(user)
+    .then(() => this.getUsers());
   }
 }

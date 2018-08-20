@@ -14,23 +14,15 @@ export class UserService {
             .then(response => response.json())
             .catch(this.handleError)
     }
-    deleteUser(id: number): Promise<void> {
-        return this.http.delete(`${this.url}/${id}`)
-            .toPromise()
-            .then(() => null)
-            .catch(this.handleError);
-    }
-    createUser(user): Promise<any> {
+    updateUser(user): Promise<void> {
+        console.log(user);
+        const url = `${this.url}/${user.id}`;
         return this.http
-            .post(this.url, JSON.stringify({
-                userName: user.userName,
-                email: user.email
-            }))
+            .put(url, JSON.stringify(user))
             .toPromise()
-            .then(res => res.json())
+            .then(() => user)
             .catch(this.handleError)
     }
-
     private handleError(error: any): Promise<any> {
         console.error('An error occurred', error);
         return Promise.reject(error.message || error);
