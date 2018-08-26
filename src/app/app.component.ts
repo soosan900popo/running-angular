@@ -1,30 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/observable';
-import { Subscription } from 'rxjs/Subscription';
-import { RandomImageService } from './random-image.service';
+import { Component } from '@angular/core';
+import { PromiseService } from './promise.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-  providers: [RandomImageService]
+  providers: [PromiseService]
 })
 export class AppComponent {
-  randomImage: Observable<any>;
-  imageInfo: any;
-  imageHistory: any[] = [];
-  constructor(private randomImages: RandomImageService) {
-    this.imageInfo = {
-      url: '',
-      title: 'Loading . . .',
-      width: 400
-    };
-  }
-  ngOnInit() {
-    this.randomImage = this.randomImages.getRandomImage();
-    this.randomImage.subscribe(imageData => {
-      this.imageInfo = imageData;
-      this.imageHistory.push(imageData);
-    });
+  seconds: number = 0;
+  constructor(
+    private alert: PromiseService
+  ){}
+
+  createAlert(){
+    this.alert.createTimedAlert(this.seconds);
   }
 }

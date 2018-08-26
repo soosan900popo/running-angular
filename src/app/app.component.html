@@ -1,9 +1,3 @@
-<div>
-  <img src="{{imageInfo.url}}" width="{{imageInfo.width}}">
-  <p>{{imageInfo.title}}</p>
-</div>
-<hr>
-<h3>Random Image History</h3>
-<span *ngFor="let image of imageHistory">
-  <img src="{{image.url}}" height="50px">
-</span>
+<h3>set the time in seconds to create an alert</h3>
+<input [(ngModel)]="seconds">
+<button (click)="createAlert()">go</button>
