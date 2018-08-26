@@ -1,42 +1,30 @@
-import { Component } from '@angular/core';
-import { AreaCalcService } from './area-calc.service';
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/observable';
+import { Subscription } from 'rxjs/Subscription';
+import { RandomImageService } from './random-image.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [AreaCalcService]
+  providers: [RandomImageService]
 })
 export class AppComponent {
-  circleRadius: number = 0;
-  squareBase: number = 0;
-  rectangleBase: number = 0;
-  rectangleHeight: number = 0;
-  triangleBase: number = 0;
-  triangleHeight: number = 0;
-  trapezoidBase1: number = 0;
-  trapezoidBase2: number = 0;
-  trapezoidHeight: number = 0;
-
-  constructor(private areaCalc: AreaCalcService) {}
-
-  doCircle() {
-    return this.areaCalc.circle(this.circleRadius);
+  randomImage: Observable<any>;
+  imageInfo: any;
+  imageHistory: any[] = [];
+  constructor(private randomImages: RandomImageService) {
+    this.imageInfo = {
+      url: '',
+      title: 'Loading . . .',
+      width: 400
+    };
   }
-  doSquare() {
-    return this.areaCalc.square(this.squareBase);
-  }
-  doRectangle() {
-    return this.areaCalc.rectangle(this.rectangleBase, this.rectangleHeight);
-  }
-  doTriangle() {
-    return this.areaCalc.triangle(this.triangleBase, this.triangleHeight);
-  }
-  doTrapezoid() {
-    return this.areaCalc.trapezoid(
-      this.trapezoidBase1,
-      this.trapezoidBase2,
-      this.trapezoidHeight
-    );
+  ngOnInit() {
+    this.randomImage = this.randomImages.getRandomImage();
+    this.randomImage.subscribe(imageData => {
+      this.imageInfo = imageData;
+      this.imageHistory.push(imageData);
+    });
   }
 }

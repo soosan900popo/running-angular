@@ -1,15 +1,10 @@
-label{ 
-    color: blue; 
-    font: bold 20px times new roman;
-    width:200px; 
-    display: inline-block; 
-    text-align: right;
+div { 
+    position: inline-block; 
+    width: fit-content; 
+    border: 3px solid black;
 }
-input{ 
-    width:40px; 
-    text-align:right;
-}
-span{ 
-    font: bold 20px courier new; 
-    padding-left: 10px;
+p { 
+    font: bold 25px 'Times New Roman'; 
+    padding: 5px; 
+    text-align: center; 
 }
