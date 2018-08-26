@@ -1,18 +1,21 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpModule } from '@angular/http';
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 import { AppComponent } from './app.component';
-import { DragItemComponent } from './drag-item/drag-item.component';
-import { DropItemComponent } from './drop-item/drop-item.component';
+import { RatedItemComponent } from './rated-item/rated-item.component';
+import { MockbackendService } from './mockbackend.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DragItemComponent,
-    DropItemComponent
+    RatedItemComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpModule,
+    InMemoryWebApiModule.forRoot(MockbackendService)
   ],
   providers: [],
   bootstrap: [AppComponent]
