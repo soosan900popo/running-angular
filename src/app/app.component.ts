@@ -1,18 +1,13 @@
 import { Component } from '@angular/core';
-import { PromiseService } from './promise.service';
+import { SharedService } from './shared.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  providers: [PromiseService]
+  providers: [ SharedService ]
 })
 export class AppComponent {
-  seconds: number = 0;
   constructor(
-    private alert: PromiseService
+     public shared: SharedService
   ){}
-
-  createAlert(){
-    this.alert.createTimedAlert(this.seconds);
-  }
 }
