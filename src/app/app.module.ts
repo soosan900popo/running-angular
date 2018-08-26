@@ -1,18 +1,16 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
-import { AnimatedComponent } from './animated/animated.component';
+import { ZoomitComponent } from './zoomit/zoomit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AnimatedComponent
+    ZoomitComponent
   ],
   imports: [
-    BrowserModule,
-    BrowserAnimationsModule
+    BrowserModule
   ],
   providers: [],
   bootstrap: [AppComponent]
