@@ -1,10 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { PiService } from './pi.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  providers: [ PiService ]
 })
-export class AppComponent {
-  title = 'first';
+export class AppComponent implements OnInit {
+  pi: number;
+  constructor(
+    private PiService: PiService
+  ){}
+  ngOnInit(){
+    this.pi = this.PiService.getPi();
+  }
 }
